@@ -19,6 +19,10 @@ app.use(express.json())
 const userRouter = require('./routes/users')
 app.use('/users', userRouter)
 
+app.get('/', async (req,res) => {
+    res.send("Hello World")
+})
+
 app.listen(3000, () => {
    console.log('Server Online')
 })
