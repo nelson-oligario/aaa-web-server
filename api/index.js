@@ -1,6 +1,7 @@
 const express = require('express')
 const app = express()
 const mongoose = require('mongoose')
+const serverless = require('serverless-http');
 require('dotenv').config()
 
 
@@ -16,13 +17,15 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(express.json())
 
-const userRouter = require('./routes/users')
+const userRouter = require('../routes/users')
 app.use('/users', userRouter)
 
 app.get('/', async (req,res) => {
     res.send("Hello World")
 })
 
-app.listen(3000, () => {
-   console.log('Server Online')
-})
+// app.listen(3000, () => {
+//    console.log('Server Online')
+// })
+
+module.exports = serverless(app);
