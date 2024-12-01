@@ -2,8 +2,7 @@ const express = require('express')
 const app = express()
 const mongoose = require('mongoose')
 const serverless = require('serverless-http');
-const path = require('path')
-require('dotenv').config({ path: require('path').resolve(__dirname, '../.env') })
+require('dotenv').config()
 
 
 mongoose.connect(process.env.DB_URI, {tls: true,
@@ -18,7 +17,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(express.json())
 
-const userRouter = require('../routes/users')
+const userRouter = require('./routes/users')
 app.use('/users', userRouter)
 
 app.get('/', async (req,res) => {
