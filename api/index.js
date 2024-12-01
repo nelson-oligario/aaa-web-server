@@ -2,7 +2,8 @@ const express = require('express')
 const app = express()
 const mongoose = require('mongoose')
 const serverless = require('serverless-http');
-require('dotenv').config()
+const path = require('path')
+require('dotenv').config({ path: require('path').resolve(__dirname, '../.env') })
 
 
 mongoose.connect(process.env.DB_URI, {tls: true,
