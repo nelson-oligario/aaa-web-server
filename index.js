@@ -1,7 +1,6 @@
 const express = require('express')
 const app = express()
 const mongoose = require('mongoose')
-const serverless = require('serverless-http');
 require('dotenv').config()
 
 
@@ -27,5 +26,3 @@ app.get('/', async (req,res) => {
 // app.listen(3000, () => {
 //    console.log('Server Online')
 // })
-
-module.exports = serverless(app);
