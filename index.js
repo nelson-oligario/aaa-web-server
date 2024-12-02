@@ -20,7 +20,7 @@ app.use(express.json())
 const userRouter = require('./routes/users')
 app.use('/users', userRouter)
 
-app.get('/', async (req,res) => {
+app.get('/', (req,res) => {
     res.send("Hello World")
 })
 
