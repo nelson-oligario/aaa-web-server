@@ -2,16 +2,16 @@ const express = require('express')
 const router = express.Router()
 const User = require('../models/user')
 
-router.get('/', async (req,res) => {
-    res.send("Hello World")
-    try{
-        const users = await User.find()
-        res.json(users)
-    }
-    catch (error){
-        res.status(500).json({message: error.message})
-    }
-})
+// router.get('/', async (req,res) => {
+//     res.send("Hello World")
+//     try{
+//         const users = await User.find()
+//         res.json(users)
+//     }
+//     catch (error){
+//         res.status(500).json({message: error.message})
+//     }
+// })
 
 router.post('/', async (req,res) => {
     const user = new User({
