@@ -20,9 +20,16 @@ app.use(express.json())
 const userRouter = require('./routes/users')
 app.use('/users', userRouter)
 
-app.get('/', (req,res) => {
-    res.send("Hello World")
-})
+app.get('/', async (req, res) => {
+    console.log('Request received at /');
+    try {
+        res.send("Hello World");
+        console.log('Response sent successfully');
+    } catch (error) {
+        console.error('Error occurred:', error);
+        res.status(500).send('Internal Server Error');
+    }
+});
 
 // app.listen(3000, () => {
 //    console.log('Server Online')
