@@ -2,12 +2,11 @@ const express = require('express')
 const app = express()
 const mongoose = require('mongoose')
 const serverless = require('serverless-http');
+const User = require('./models/user')
 require('dotenv').config()
 
 
 mongoose.connect(process.env.DB_URI, {tls: true,
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
     serverSelectionTimeoutMS: 10000,
     autoSelectFamily: false});
  
@@ -19,8 +18,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(express.json())
 
-const userRouter = require('./routes/users')
-app.use('/users', userRouter)
+
 
 app.get('/', async (req, res) => {
     console.log('Request received at /');
@@ -33,8 +31,31 @@ app.get('/', async (req, res) => {
     }
 });
 
-// app.listen(3000, () => {
-//    console.log('Server Online')
-// })
+
+app.post('/', async (req,res) => {
+    const user = new User({
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+        email: req.body.email,
+        phone: req.body.phone,
+        address: req.body.address,
+        registrationLevel: req.body.registrationLevel,
+        events: req.body.events,
+        accomodation: req.body.accomodation,
+        hasdietaryRestriction: req.body.hasdietaryRestriction,
+        accomList: req.body.accomList,
+    })
+    try{
+        const newUser = await user.save()
+        res.status(201).send("Request Sent!")
+    }
+    catch{
+        res.status(400).json({message: err.message})
+    }
+})
+
+app.listen(3000, () => {
+   console.log('Server Online')
+})
 
 module.exports = serverless(app);
