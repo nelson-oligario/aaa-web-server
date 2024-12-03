@@ -1,13 +1,12 @@
 const express = require('express')
 const app = express()
 const mongoose = require('mongoose')
-const serverless = require('serverless-http');
+// const serverless = require('serverless-http');
 const User = require('./models/user')
 require('dotenv').config()
 
 
 mongoose.connect(process.env.DB_URI, {tls: true,
-    serverSelectionTimeoutMS: 2000,
     autoSelectFamily: false});
  
 const db = mongoose.connection
@@ -54,8 +53,8 @@ app.post('/', async (req,res) => {
     }
 })
 
-app.listen(3000, () => {
-   console.log('Server Online')
-})
+// app.listen(3000, () => {
+//    console.log('Server Online')
+// })
 
-module.exports = serverless(app);
+// module.exports = serverless(app);
