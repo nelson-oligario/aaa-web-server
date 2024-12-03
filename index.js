@@ -7,7 +7,7 @@ require('dotenv').config()
 
 
 mongoose.connect(process.env.DB_URI, {tls: true,
-    serverSelectionTimeoutMS: 10000,
+    serverSelectionTimeoutMS: 2000,
     autoSelectFamily: false});
  
 const db = mongoose.connection
