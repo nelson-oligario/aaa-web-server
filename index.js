@@ -53,8 +53,8 @@ app.post('/', async (req,res) => {
     }
 })
 
-// app.listen(3000, () => {
-//    console.log('Server Online')
-// })
+app.listen(3000, () => {
+   console.log('Server Online')
+})
 
 // module.exports = serverless(app);
